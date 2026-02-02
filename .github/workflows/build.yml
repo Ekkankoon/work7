@@ -3,7 +3,7 @@ name: Flutter Build APK Release
 on:
   push:
     tags:
-      - 'v*.*.*'   # เช่น v1.0.0
+      - 'v*'
 
 permissions:
   contents: write
@@ -16,8 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ลบไฟล์ที่อาจล็อก Flutter เวอร์ชัน
-      - name: Remove Flutter version lock files
+      # กัน FVM / Flutter lock
+      - name: Remove Flutter version lock
         run: |
           rm -f .fvmrc || true
           rm -f .flutter-version || true
