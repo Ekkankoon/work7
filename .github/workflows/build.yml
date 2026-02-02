@@ -16,16 +16,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # ลบไฟล์ที่อาจล็อก Flutter เวอร์ชัน
       - name: Remove Flutter version lock files
         run: |
-          rm -f .fvmrc
-          rm -f .flutter-version
-          rm -rf .fvm
+          rm -f .fvmrc || true
+          rm -f .flutter-version || true
+          rm -rf .fvm || true
 
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '17'
 
       - name: Set up Flutter
@@ -34,8 +35,10 @@ jobs:
           flutter-version: '3.38.9'
           cache: false
 
-      - name: Flutter doctor
-        run: flutter doctor
+      - name: Check Flutter & Dart version
+        run: |
+          flutter --version
+          dart --version
 
       - name: Install dependencies
         run: flutter pub get
@@ -43,8 +46,7 @@ jobs:
       - name: Build APK (Release)
         run: flutter build apk --release
 
-      # 🔥 สร้าง GitHub Release + แนบ APK
-      - name: Create GitHub Release
+      - name: Create GitHub Release and upload APK
         uses: softprops/action-gh-release@v2
         with:
           files: build/app/outputs/flutter-apk/app-release.apk
