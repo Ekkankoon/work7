@@ -16,6 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 🔴 บังคับลบไฟล์ที่ล็อก Flutter เวอร์ชัน (FVM)
+      - name: Remove Flutter version lock files
+        run: |
+          rm -f .fvmrc
+          rm -f .flutter-version
+          rm -rf .fvm
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
