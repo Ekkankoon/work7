@@ -1,0 +1,50 @@
+name: Flutter Build APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. ดึงโค้ดจาก GitHub Repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. ติดตั้ง Java (จำเป็นสำหรับ Android)
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # 3. ติดตั้ง Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+
+      # 4. ตรวจสอบ Flutter
+      - name: Flutter doctor
+        run: flutter doctor
+
+      # 5. ดึง package
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 6. Build APK (Release)
+      - name: Build APK
+        run: flutter build apk --release
+
+      # 7. เก็บไฟล์ APK เป็น Artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
