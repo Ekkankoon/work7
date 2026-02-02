@@ -1,12 +1,12 @@
-name: Flutter Build APK
+name: Flutter Build APK Release
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'   # เช่น v1.0.0
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -16,7 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 🔴 บังคับลบไฟล์ที่ล็อก Flutter เวอร์ชัน (FVM)
       - name: Remove Flutter version lock files
         run: |
           rm -f .fvmrc
@@ -38,17 +37,14 @@ jobs:
       - name: Flutter doctor
         run: flutter doctor
 
-      - name: Check Dart version
-        run: dart --version
-
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build APK
+      - name: Build APK (Release)
         run: flutter build apk --release
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      # 🔥 สร้าง GitHub Release + แนบ APK
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          files: build/app/outputs/flutter-apk/app-release.apk
