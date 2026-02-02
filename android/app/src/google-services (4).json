@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "407982710204",
+    "project_id": "ekkankoon-food",
+    "storage_bucket": "ekkankoon-food.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407982710204:android:ef1e3660b67ec3c20a1fb9",
+        "android_client_info": {
+          "package_name": "com.ekkankoon.food"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO4L5ZGyFVZUI4Ng9m8fEEvnxbb-C3bqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

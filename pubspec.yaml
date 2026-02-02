@@ -1,0 +1,55 @@
+name: new_piyawat
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  geolocator: ^12.0.0
+  url_launcher: ^6.2.6
+  firebase_core: ^2.27.0
+  cloud_firestore: ^4.15.0
+  video_player: ^2.8.6
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+
+    - assets/images/Sweet1.jpg
+    - assets/images/sweet2.jpg
+    - assets/images/sweet3.jpg
+    - assets/images/cow1.jpg
+    - assets/images/cow2.jpg
+    - assets/images/cow3.jpg
+    - assets/images/cow4.jpg
+    - assets/images/icon.png
+
+    - assets/videos/cook1.mp4
+    - assets/videos/cook2.mp4
+    - assets/videos/cook3.mp4
+    - assets/videos/cook4.mp4
+    - assets/videos/cook5.mp4
+    - assets/videos/cook6.mp4
+    - assets/videos/cook7.mp4
+
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.png"
